@@ -1,30 +1,34 @@
-import { Oferta } from './shared/oferta.model';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Oferta } from './shared/oferta.model';
 
-// import 'rxjs/add/operator/toPromise';
+// import 'rxjs/add/operator/toPromise'
 
-@Injectable(
-  // {
-//   providedIn: 'root'
-// }
-)
+@Injectable()
 export class OfertasService {
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: Http) { }
+    public getOfertas(): Promise<Oferta[]> {
+        return this.http.get('http://localhost:3000/ofertas?destaque=true')
+            .toPromise()
+            .then((resposta: any) => {
+                return resposta;
+            });
+    }
 
-  public getOfertas (): Promise<Oferta[]> {
+    public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
+        return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+            .toPromise()
+            .then((resposta: any) => {
+                return resposta;
+            });
+    }
 
-    return this.http.get ('http://localhost:3000/ofertas?destaque=true').toPromise().then (
-      (resposta: any) => resposta.json()
-    );
-  }
-
-  public getOfertasPorCategoria (categoria: string): Promise<Oferta[]> {
-    return this.http.get (`http://localhost:3000/ofertas?categoria=${categoria}`).toPromise().then (
-      (resposta: any) => resposta.json()
-    );
-  }
-
+    public getOfertaPorId(id: number): Promise<Oferta> {
+        return this.http.get(`http://localhost:3000/ofertas?id=${id}`)
+            .toPromise()
+            .then((resposta: any) => {
+                return resposta[0];
+            });
+    }
 }
-

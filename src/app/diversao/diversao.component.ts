@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Oferta } from '../shared/oferta.model';
-import { OfertasService } from '../ofertas.service';
+import { Oferta } from '../shared/oferta.model'
+import { OfertasService } from '../ofertas.service'
 
 @Component({
   selector: 'app-diversao',
@@ -10,14 +10,15 @@ import { OfertasService } from '../ofertas.service';
 })
 export class DiversaoComponent implements OnInit {
 
-  public ofertas: Oferta[];
+  public ofertas: Oferta[]
 
-  constructor(private ofertaService: OfertasService) { }
+  constructor(private ofertasService: OfertasService ) { }
 
   ngOnInit() {
-    this.ofertaService.getOfertasPorCategoria ('diversao').
-      then ((ofertas: Oferta[]) => {
-        this.ofertas = ofertas;
-      });
+    this.ofertasService.getOfertasPorCategoria('diversao')
+      .then(( ofertas: Oferta[]) => {
+        this.ofertas = ofertas
+      })
   }
+
 }
