@@ -13,6 +13,8 @@ import { DiversaoComponent } from './diversao/diversao.component';
 import { OfertaComponent } from './oferta/oferta.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
+import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     RodapeComponent,
     RestaurantesComponent,
     DiversaoComponent,
-    OfertaComponent
+    OfertaComponent,
+    ComoUsarComponent,
+    OndeFicaComponent
   ],
   imports: [
     BrowserModule,

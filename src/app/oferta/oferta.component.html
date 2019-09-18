@@ -48,15 +48,14 @@
     <div class="col">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#prima" role="tab" aria-selected="true">Como usar</a>
+          <a class="nav-link active" routerLink="como-usar" data-toggle="tab" role="tab" aria-selected="true">Como usar</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#segunda" role="tab" >Onde fica?</a>
+          <a class="nav-link" routerLink="onde-fica" data-toggle="tab" role="tab" >Onde fica?</a>
         </li>
       </ul>
       <div class="tab-content" >
-        <div class="tab-pane fade show active" id="prima" role="tabpanel" >Texto como usar</div>
-        <div class="tab-pane fade" id="segunda" role="tabpanel" >Texto onde fica?</div>
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
