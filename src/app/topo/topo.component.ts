@@ -2,7 +2,8 @@ import { OfertasService } from './../ofertas.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Oferta } from '../shared/oferta.model';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, distinctUntilChanged, debounceTime, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 
 @Component({
@@ -19,17 +20,22 @@ export class TopoComponent implements OnInit {
   constructor(private ofertasService: OfertasService) { }
 
   ngOnInit() {
-    // const obs: Observable<string> = this.subjectPesquisa.asObservable();
-    // obs.pipe (switchMap((termo: string) => {
-    //   console.log ('requisicao http: ');
-    //   return this.ofertasService.pesquisaOfertas (termo);
-    // }));
-
     const obs: Observable<any> = this.subjectPesquisa.asObservable();
 
-    this.ofertas = obs.pipe (switchMap((termo: string) => {
+    this.ofertas = obs
+    .pipe (debounceTime(1000))  // executa a ação do switchMap após 1 segundo.
+    .pipe (distinctUntilChanged())
+    .pipe(switchMap((termo: string) => {
       console.log ('requisicao http: ');
+
+      if (termo.trim() === '') {
+        return of<Oferta[]> ([]);
+      }
+
       return this.ofertasService.pesquisaOfertas (termo);
+    })).pipe (catchError ((err: any) => {
+      console.log (err);
+      return of<Oferta[]>([]);
     }));
 
     this.ofertas.subscribe ((ofertas: Oferta[]) => console.log (ofertas));
@@ -37,7 +43,7 @@ export class TopoComponent implements OnInit {
 
   public pesquisa (termoDaBusca: string): void {
     console.log ('termo da busca: ' + termoDaBusca);
-    this.subjectPesquisa.next (termoDaBusca);
+    this.subjectPesquisa.next (termoDaBusca.trim());
     // this.ofertas = this.ofertasService.pesquisaOfertas (termoDaBusca);
 
     // this.ofertas.subscribe(
