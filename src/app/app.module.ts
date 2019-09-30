@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router'
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { ROUTES } from './app.routes'
+import { ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
@@ -16,6 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 import { HttpModule } from '@angular/http';
+
+import localePT from '@angular/common/locales/pt';
+import localeExtraPT from '@angular/common/locales/extra/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePT, 'pt', localeExtraPT);
+
 
 @NgModule({
   declarations: [
@@ -35,7 +41,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [ { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
