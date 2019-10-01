@@ -1,3 +1,4 @@
+import { Descricaoreduzida } from './util/descricao-reduzida.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -20,8 +21,10 @@ import { HttpModule } from '@angular/http';
 import localePT from '@angular/common/locales/pt';
 import localeExtraPT from '@angular/common/locales/extra/pt';
 import { registerLocaleData } from '@angular/common';
-registerLocaleData(localePT, 'pt', localeExtraPT);
 
+
+
+registerLocaleData(localePT, 'pt', localeExtraPT);
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ registerLocaleData(localePT, 'pt', localeExtraPT);
     DiversaoComponent,
     OfertaComponent,
     ComoUsarComponent,
-    OndeFicaComponent
+    OndeFicaComponent,
+    Descricaoreduzida
   ],
   imports: [
     BrowserModule,
