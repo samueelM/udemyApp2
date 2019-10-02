@@ -21,6 +21,7 @@ import { HttpModule } from '@angular/http';
 import localePT from '@angular/common/locales/pt';
 import localeExtraPT from '@angular/common/locales/extra/pt';
 import { registerLocaleData } from '@angular/common';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 
 
 
@@ -37,7 +38,8 @@ registerLocaleData(localePT, 'pt', localeExtraPT);
     OfertaComponent,
     ComoUsarComponent,
     OndeFicaComponent,
-    Descricaoreduzida
+    Descricaoreduzida,
+    OrdemCompraComponent
   ],
   imports: [
     BrowserModule,
