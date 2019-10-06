@@ -22,6 +22,7 @@ import localePT from '@angular/common/locales/pt';
 import localeExtraPT from '@angular/common/locales/extra/pt';
 import { registerLocaleData } from '@angular/common';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 
 
 
@@ -39,7 +40,8 @@ registerLocaleData(localePT, 'pt', localeExtraPT);
     ComoUsarComponent,
     OndeFicaComponent,
     Descricaoreduzida,
-    OrdemCompraComponent
+    OrdemCompraComponent,
+    OrdemCompraSucessoComponent
   ],
   imports: [
     BrowserModule,
