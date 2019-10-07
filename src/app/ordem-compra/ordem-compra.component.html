@@ -1,7 +1,7 @@
 <div class="container">
   <div class="ordem-compra">
-    <form #formulario="ngForm"  novalidate>
-    
+    <form #formulario="ngForm" (ngSubmit)="confirmarCompra(formulario)" >
+
       <h5>Sua Compra</h5>
       <hr />
 
@@ -29,7 +29,7 @@
           29.90
         </div>
       </div>
-      
+
       <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
         <div class="form-group col-sm-1">
           <img src="/assets/ofertas/4/img1.jpg" class="img-fluid">
@@ -54,7 +54,7 @@
           31.90
         </div>
       </div>
-      
+
       <div class="form-row">
         <div class="form-group col d-flex justify-content-end">
           <h4>Total do pedido: 61.80</h4>
@@ -68,40 +68,44 @@
 
       <div class="form-row">
 
+        <pre>Válido: {{formulario.valid | json}}</pre>
+        <pre>Inválido: {{formulario.invalid | json}}</pre>
         <pre>{{formulario.value | json}}</pre>
         <div class="form-group col-md-6">
-          <input 
-            type="text" 
-            class="form-control is-invalid" 
-            placeholder="Endereço" 
-            autocomplete="off" 
-            minlength="5" 
+          <input
+            type="text"
+            class="form-control is-invalid"
+            placeholder="Endereço"
+            autocomplete="off"
             required
             ngModel
+            minlength="3"
+            maxlength="120"
             name="endereco"
           >
           <small class="form-text text-danger">Endereço inválido</small>
         </div>
 
         <div class="form-group col-md-2">
-          <input 
-            type="text" 
-            class="form-control is-valid" 
-            placeholder="Número" 
-            autocomplete="off" 
-            minlength="1"
+          <input
+            type="text"
+            class="form-control is-valid"
+            placeholder="Número"
+            autocomplete="off"
             required
             ngModel
+            minlength="1"
+            maxlength="20"
             name="numero"
             >
           <small class="form-text text-success">Ok</small>
         </div>
 
         <div class="form-group col-md-4">
-          <input 
-            type="text" 
-            class="form-control" 
-            placeholder="Complemento" 
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Complemento"
             autocomplete="off"
             ngModel
             name="complemento"
@@ -115,10 +119,11 @@
       <hr />
 
       <div class="form-row">
-          
+
         <div class="form-group col-md-3">
-          <select 
+          <select
             class="form-control is-invalid"
+            required
             ngModel
             name="formaPagamento"
           >
@@ -131,8 +136,8 @@
       </div>
 
       <hr />
-      <button 
-        type="button" 
+      <button
+        type="submit"
         class="btn btn-primary btn-lg"
       >Cofirmar compra</button>
     </form>
