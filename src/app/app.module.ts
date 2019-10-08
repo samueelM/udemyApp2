@@ -24,7 +24,7 @@ import { registerLocaleData } from '@angular/common';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 
-import { FormsModule } from '@angular/forms';
+ import { ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localePT, 'pt', localeExtraPT);
 
@@ -47,7 +47,7 @@ registerLocaleData(localePT, 'pt', localeExtraPT);
     BrowserModule,
     HttpClientModule,
     HttpModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'pt-BR' }],
