@@ -10,7 +10,7 @@ class CarrinhoService {
   }
 
   public incluirItem (oferta: Oferta): void {
-    let itemCarrinho: ItemCarrinho = new ItemCarrinho(
+    const itemCarrinho: ItemCarrinho = new ItemCarrinho(
       oferta.id, oferta.imagens[0],
       oferta.titulo,
       oferta.descricao_oferta,
@@ -18,10 +18,9 @@ class CarrinhoService {
       1
     );
 
-    console.log ('oferta recebida no servico' + oferta);
+    this.itens.push (itemCarrinho);
   }
 
 }
 
-
-export default CarrinhoService;
+export {CarrinhoService};

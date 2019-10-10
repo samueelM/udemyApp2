@@ -4,13 +4,13 @@ import { Oferta } from '../shared/oferta.model';
 import { OfertasService } from '../ofertas.service';
 import { Observable, interval, Observer, observable, Subscription } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import CarrinhoService from '../carrinho.service';
+import { CarrinhoService } from '../carrinho.service';
 
 @Component({
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-  providers: [ OfertasService, CarrinhoService ]
+  providers: [ OfertasService ]
 })
 export class OfertaComponent implements OnInit/*, OnDestroy*/ {
 
@@ -32,8 +32,6 @@ export class OfertaComponent implements OnInit/*, OnDestroy*/ {
 
 
   ngOnInit() {
-    console.log ('Carrinho Service oferta' + this.carrinhoService.exibirItens());
-
     this.route.params.subscribe ((parametros: Params) => {
         this.ofertasService.getOfertaPorId(parametros.id)
         .then(( oferta: Oferta ) => {
@@ -69,9 +67,10 @@ export class OfertaComponent implements OnInit/*, OnDestroy*/ {
   }
 
   public adicionarItemCarrinho (): void {
-    
+
     this.carrinhoService.incluirItem(this.oferta);
-    console.log (this.oferta);
+    console.log (this.carrinhoService.exibirItens());
+
   }
 
 }
