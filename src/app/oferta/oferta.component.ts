@@ -66,8 +66,12 @@ export class OfertaComponent implements OnInit/*, OnDestroy*/ {
       //   (resultado: number) => console.log (resultado + 10),
       //   (erro: string) => console.log (erro),
       //   () => console.log ('a stream de eventos foi finalizada'));
+  }
 
-
+  public adicionarItemCarrinho (): void {
+    
+    this.carrinhoService.incluirItem(this.oferta);
+    console.log (this.oferta);
   }
 
 }
