@@ -41,16 +41,36 @@ export class OrdemCompraComponent implements OnInit {
       this.formulario.get('complemento').markAsTouched();
       this.formulario.get('formaPagamento').markAsTouched();
     } else {
-      const pedido = new Pedido(this.formulario.value.endereco,
-                                this.formulario.value.numero,
-                                this.formulario.value.complemento,
-                                this.formulario.value.formaPagamento);
-      console.log (pedido);
 
-      this.ordemCompraService.efetivarCompra(pedido).subscribe ((idPedido: number) => {
-        this.idPedidoCompra = idPedido;
-      });
+      if (this.carrinhoService.exibirItens().length === 0) {
+        alert ('Você não selecionou nenhum item!');
+      } else {
+
+        const pedido = new Pedido(this.formulario.value.endereco,
+                                  this.formulario.value.numero,
+                                  this.formulario.value.complemento,
+                                  this.formulario.value.formaPagamento,
+                                  this.carrinhoService.exibirItens());
+
+        console.log (pedido);
+
+        this.ordemCompraService.efetivarCompra(pedido).subscribe ((idPedido: number) => {
+          this.idPedidoCompra = idPedido;
+          this.carrinhoService.limparCarrinho();
+        });
+      }
     }
+  }
 
+  public adicionar (item: ItemCarrinho): void {
+    this.carrinhoService.adicionarQuantidade (item);
+  }
+
+  public diminuir (item: ItemCarrinho): void {
+    this.carrinhoService.diminuirQuantidade (item);
+  }
+
+  public isCarrinhoVazio (): boolean {
+    return this.carrinhoService.exibirItens().length === 0 ? true : false;
   }
 }

@@ -2,7 +2,6 @@ import { ItemCarrinho } from './shared/item-carrinho.model';
 import { Oferta } from './shared/oferta.model';
 
 class CarrinhoService {
-
   public itens: ItemCarrinho[] = [];
 
   public exibirItens (): ItemCarrinho[] {
@@ -35,6 +34,30 @@ class CarrinhoService {
     });
 
     return total;
+  }
+
+  adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
+    let itemCarrinhoEncontrado = this.itens.find ((item: ItemCarrinho) => itemCarrinho.id === item.id );
+
+    if (itemCarrinhoEncontrado) {
+      itemCarrinhoEncontrado.quantidade++;
+    }
+  }
+
+  diminuirQuantidade(itemCarrinho: ItemCarrinho): void {
+    let itemCarrinhoEncontrado = this.itens.find ((item: ItemCarrinho) => itemCarrinho.id === item.id );
+
+    if (itemCarrinhoEncontrado) {
+      itemCarrinhoEncontrado.quantidade--;
+    }
+
+    if (itemCarrinhoEncontrado.quantidade === 0) {
+      this.itens.splice (this.itens.indexOf (itemCarrinhoEncontrado), 1);
+    }
+  }
+
+  public limparCarrinho (): void {
+    this.itens = [];
   }
 
 }
